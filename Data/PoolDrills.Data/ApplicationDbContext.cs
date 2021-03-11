@@ -26,6 +26,22 @@
 
         public DbSet<Setting> Settings { get; set; }
 
+        public DbSet<Collection> Collections { get; set; }
+
+        public DbSet<Drill> Drills { get; set; }
+
+        public DbSet<DrillCollection> DrillCollections { get; set; }
+
+        public DbSet<DrillRoutine> DrillRoutines { get; set; }
+
+        public DbSet<DrillTag> DrillTags { get; set; }
+
+        public DbSet<Entry> Entries { get; set; }
+
+        public DbSet<FavoriteDrill> FavoriteDrills { get; set; }
+
+        public DbSet<Tag> Tags { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

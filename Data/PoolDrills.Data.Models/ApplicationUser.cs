@@ -16,6 +16,9 @@ namespace PoolDrills.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
+            this.FavoriteDrills = new HashSet<FavoriteDrill>();
+            this.Drills = new HashSet<Drill>();
+            this.Collections = new HashSet<Collection>();
         }
 
         // Audit info
@@ -33,5 +36,12 @@ namespace PoolDrills.Data.Models
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+
+        // Added by me
+        public virtual ICollection<FavoriteDrill> FavoriteDrills { get; set; }
+
+        public virtual ICollection<Collection> Collections { get; set; }
+
+        public virtual ICollection<Drill> Drills { get; set; }
     }
 }
