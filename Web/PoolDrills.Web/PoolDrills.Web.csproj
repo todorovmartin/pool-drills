@@ -36,4 +36,10 @@
     <ProjectReference Include="..\PoolDrills.Web.Infrastructure\PoolDrills.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\PoolDrills.Web.ViewModels\PoolDrills.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\css\site - Copy.min.css">
+      <DependentUpon>site.min.css</DependentUpon>
+    </Content>
+  </ItemGroup>
 </Project>
