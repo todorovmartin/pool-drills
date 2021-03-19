@@ -21,6 +21,8 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using PoolDrills.Web.Services;
+    using PoolDrills.Web.Services.Contracts;
 
     public class Startup
     {
@@ -65,6 +67,8 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddScoped<IDrillsService, DrillsService>();
+            services.AddScoped<IFavoritesService, FavoritesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

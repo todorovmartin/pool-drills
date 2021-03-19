@@ -3,10 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     using PoolDrills.Data;
     using PoolDrills.Data.Models;
+    using PoolDrills.Data.Models.Enums;
     using PoolDrills.Web.Services.Contracts;
 
     public class DrillsService : IDrillsService
@@ -19,69 +19,133 @@
             this.db = db;
         }
 
-        public void ApproveDrill(int id)
+        public void AddDrill(Drill drill)
         {
-            throw new NotImplementedException();
+            if (drill == null)
+            {
+                return;
+            }
+
+            this.db.Drills.Add(drill);
+            this.db.SaveChanges();
+        }
+
+        public bool ApproveDrill(int id)
+        {
+            var drill = this.db.Drills.FirstOrDefault(x => x.Id == id);
+            if (drill == null)
+            {
+                return false;
+            }
+
+            drill.IsApproved = true;
+            this.db.SaveChanges();
+            return true;
         }
 
         public void DeleteDrill(int id)
         {
-            throw new NotImplementedException();
+            var drill = this.GetDrillById(id);
+
+            if (drill == null)
+            {
+                return;
+            }
+
+            this.db.Drills.Remove(drill);
+            this.db.SaveChanges();
         }
 
         public bool DrillExists(int id)
         {
-            throw new NotImplementedException();
+            return this.db.Drills.Any(x => x.Id == id);
         }
 
         public bool EditDrill(Drill drill)
         {
-            throw new NotImplementedException();
+            if (!this.DrillExists(drill.Id))
+            {
+                return false;
+            }
+
+            try
+            {
+                this.db.Update(drill);
+                this.db.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public IEnumerable<Drill> GetAllApprovedDrills()
         {
-            throw new NotImplementedException();
+            return this.db.Drills.Where(x => x.IsApproved == true).ToList();
         }
 
         public IEnumerable<Drill> GetAllDrills()
         {
-            throw new NotImplementedException();
+            return this.db.Drills.ToList();
         }
 
         public IEnumerable<Drill> GetAllDrillsByAuthor(string authorId)
         {
-            throw new NotImplementedException();
+            return this.db.Drills.Where(x => x.AuthorId == authorId).ToList();
         }
 
-        public IEnumerable<Drill> GetAllDrillsByCategory(int categoryId)
+        public IEnumerable<Drill> GetAllDrillsByCategory(Category category)
         {
-            throw new NotImplementedException();
+            return this.db.Drills.Where(x => x.Category == category).ToList();
         }
 
         public IEnumerable<Drill> GetAllDrillsBySearch(string searchString)
         {
-            throw new NotImplementedException();
+            var searchStringClean = searchString.Split(new string[] { ",", ".", " " }, StringSplitOptions.RemoveEmptyEntries);
+
+            IQueryable<Drill> products = this.db.Drills.Where(x => x.Title.ToLower().Contains(searchString.ToLower())
+                                                                 || x.Description.ToLower().Contains(searchString.ToLower()));
+            return products;
         }
 
-        public IEnumerable<Drill> GetAllHiddenDrills()
+        public IEnumerable<Drill> GetAllVisibleDrills()
         {
-            throw new NotImplementedException();
+            return this.db.Drills.Where(x => x.IsHidden == false).ToList();
         }
 
         public Drill GetDrillById(int id)
         {
-            throw new NotImplementedException();
+            var drill = this.db.Drills.FirstOrDefault(x => x.Id == id);
+
+            return drill;
         }
 
-        public void HideDrill(int id)
+        public bool HideDrill(int id)
         {
-            throw new NotImplementedException();
+            var drill = this.db.Drills.FirstOrDefault(x => x.Id == id);
+            if (drill == null)
+            {
+                return false;
+            }
+
+            drill.IsHidden = true;
+            this.db.SaveChanges();
+            return true;
         }
 
-        public void ShowDrill(int id)
+        public bool ShowDrill(int id)
         {
-            throw new NotImplementedException();
+            var drill = this.db.Drills.FirstOrDefault(x => x.Id == id);
+            if (drill == null)
+            {
+                return false;
+            }
+
+            drill.IsHidden = false;
+            this.db.SaveChanges();
+            return true;
         }
     }
 }
