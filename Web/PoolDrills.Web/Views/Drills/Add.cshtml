@@ -8,7 +8,7 @@
     <h1 class="headings">SUBMIT A DRILL</h1>
 </div>
 
-<form>
+<form asp-controller="Drills" asp-action="Add" method="post">
     <div class="form-row">
         <div class="col-md-6 mb-3">
             <label asp-for="Title"></label>
@@ -35,8 +35,8 @@
     <div class="form-row">
         <div class="col-md-12 mb-3">
             <label asp-for="Description"></label>
-            <textarea class="form-control" rows="3" placeholder="Describe the drill..."></textarea>
-            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Describe the drill..."></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
         </div>
     </div>
     <div class="form-row">

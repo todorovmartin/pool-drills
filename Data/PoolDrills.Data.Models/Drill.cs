@@ -34,6 +34,8 @@
 
         public virtual Category Category { get; set; }
 
+        public virtual Difficulty Difficulty { get; set; }
+
         public virtual ICollection<DrillTag> DrillTags { get; set; }
 
         public virtual ICollection<FavoriteDrill> FavoriteDrills { get; set; }

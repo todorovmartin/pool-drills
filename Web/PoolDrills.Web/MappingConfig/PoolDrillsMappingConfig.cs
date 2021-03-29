@@ -9,8 +9,9 @@
         public PoolDrillsMappingConfig()
         {
             this.CreateMap<AddDrillViewModel, Drill>();
-            //this.CreateMap<EditDrillViewModel, Drill>();
-            //this.CreateMap<Drill, EditDrillViewModel>();
+            this.CreateMap<EditDrillViewModel, Drill>();
+            this.CreateMap<Drill, EditDrillViewModel>();
+            this.CreateMap<Drill, DrillViewModel>();
         }
     }
 }

@@ -23,6 +23,8 @@
     using Microsoft.Extensions.Hosting;
     using PoolDrills.Web.Services;
     using PoolDrills.Web.Services.Contracts;
+    using AutoMapper;
+    using PoolDrills.Web.MappingConfig;
 
     public class Startup
     {
@@ -69,6 +71,17 @@
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddScoped<IDrillsService, DrillsService>();
             services.AddScoped<IFavoritesService, FavoritesService>();
+
+            // Auto Mapper Configurations
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new PoolDrillsMappingConfig());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

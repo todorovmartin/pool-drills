@@ -7,6 +7,7 @@
 
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
+    using PoolDrills.Data.Models;
     using PoolDrills.Web.Services.Contracts;
     using PoolDrills.Web.ViewModels.Drills;
 
@@ -23,7 +24,9 @@
 
         public IActionResult All()
         {
-            return this.View();
+            var drills = this.drillsService.GetAllDrills();
+
+            return this.View(drills);
         }
 
         public IActionResult Add()
@@ -34,7 +37,11 @@
         [HttpPost]
         public IActionResult Add(AddDrillViewModel model)
         {
-            return this.View();
+            var drill = this.mapper.Map<Drill>(model);
+
+            this.drillsService.AddDrill(drill);
+
+            return this.RedirectToAction(nameof(this.All)); // todo redirect to confrimation page
         }
     }
 }
