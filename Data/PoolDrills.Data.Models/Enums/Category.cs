@@ -1,5 +1,7 @@
 ﻿namespace PoolDrills.Data.Models.Enums
 {
+    using System.ComponentModel.DataAnnotations;
+
     public enum Category
     {
         Positioning = 1,

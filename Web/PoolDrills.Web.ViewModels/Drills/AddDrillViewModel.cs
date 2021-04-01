@@ -1,6 +1,5 @@
 ﻿namespace PoolDrills.Web.ViewModels.Drills
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
 
     public class AddDrillViewModel

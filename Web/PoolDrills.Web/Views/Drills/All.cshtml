@@ -4,16 +4,23 @@
     this.ViewData["Title"] = "Add Drill";
 }
 
-@foreach (var drill in Model.Drills)
-{
-    <div class="card" style="width: 18rem;">
-        <img src="@drill.ImageUrl" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">@drill.Title</h5>
-            <p class="card-text">@drill.Description</p>
-            <p class="card-text">@drill.Category</p>
-            <a href="#" class="btn btn-primary">Edit</a>
-            <a href="#" class="btn btn-primary">View</a>
-        </div>
+<div class="text-center">
+    <h1 class="headings">ALL DRILLS</h1>
+</div>
+<div class="card-deck">
+    <div class="card-columns">
+        @foreach (var drill in Model.Drills)
+        {
+            <div class="card">
+                <img src="@drill.ImageUrl" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@drill.Title</h5>
+                    <p class="card-text">@drill.Description</p>
+                    <p class="card-text">@drill.Category</p>
+                    <a href="#" class="btn btn-primary">Edit</a>
+                    <a href="#" class="btn btn-primary">View</a>
+                </div>
+            </div>
+        }
     </div>
-}
+</div>

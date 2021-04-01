@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using Microsoft.AspNetCore.Identity;
     using PoolDrills.Data;
     using PoolDrills.Data.Models;
     using PoolDrills.Data.Models.Enums;
@@ -12,11 +13,14 @@
     public class DrillsService : IDrillsService
     {
         private readonly ApplicationDbContext db;
+        private readonly UserManager<ApplicationUser> userManager;
 
         public DrillsService(
-            ApplicationDbContext db)
+            ApplicationDbContext db,
+            UserManager<ApplicationUser> userManager)
         {
             this.db = db;
+            this.userManager = userManager;
         }
 
         public void AddDrill(Drill drill)

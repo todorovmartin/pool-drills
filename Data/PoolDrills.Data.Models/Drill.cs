@@ -32,7 +32,7 @@
 
         public ApplicationUser Author { get; set; }
 
-        public virtual Category Category { get; set; }
+        public virtual Category Category { get; set; } // todo make it icollection
 
         public virtual Difficulty Difficulty { get; set; }
 

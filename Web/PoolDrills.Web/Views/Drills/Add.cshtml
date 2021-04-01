@@ -17,7 +17,7 @@
         </div>
         <div class="col-md-6 mb-3">
             <label asp-for="Difficulty">Select Difficulty</label>
-            <select class="form-control" asp-items="Html.GetEnumSelectList<PoolDrills.Data.Models.Enums.Difficulty>()">
+            <select class="form-control" asp-for="Difficulty" asp-items="Html.GetEnumSelectList<PoolDrills.Data.Models.Enums.Difficulty>()">
             </select>
             <span asp-validation-for="Difficulty" class="text-danger"></span>
         </div>
@@ -25,10 +25,11 @@
     <div class="form-row">
         <div class="col-md-12 mb-3">
             <label asp-for="Category">Select Category</label>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" value="option1">
-                <label class="form-check-label" for="inlineCheckbox1">Speed</label>
-            </div>
+            @foreach (var category in Enum.GetValues(typeof(PoolDrills.Data.Models.Enums.Category)))
+            {
+                <input asp-for="Category" type="checkbox" value="@((PoolDrills.Data.Models.Enums.Category)category)">
+                <label asp-for="Category">@category</label>
+            }
             <span asp-validation-for="Category" class="text-danger"></span>
         </div>
     </div>
