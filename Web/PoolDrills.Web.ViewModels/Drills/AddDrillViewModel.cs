@@ -2,6 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using PoolDrills.Data.Models;
+
     public class AddDrillViewModel
     {
         public int Id { get; set; }
@@ -24,5 +26,7 @@
 
         [Display(Name = "Image")]
         public string ImageUrl { get; set; }
+
+        public ApplicationUser Author { get; set; }
     }
 }

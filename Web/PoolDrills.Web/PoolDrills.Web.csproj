@@ -38,6 +38,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="wwwroot\css\site - Copy - Copy %282%29.min.css">
+      <DependentUpon>site.min.css</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\css\site - Copy - Copy - Copy.min.css">
+      <DependentUpon>site - Copy - Copy.min.css</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\css\site - Copy - Copy.min.css">
+      <DependentUpon>site.min.css</DependentUpon>
+    </Content>
     <Content Update="wwwroot\css\site - Copy.min.css">
       <DependentUpon>site.min.css</DependentUpon>
     </Content>

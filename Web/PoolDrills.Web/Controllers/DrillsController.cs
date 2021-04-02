@@ -10,6 +10,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using PoolDrills.Common;
     using PoolDrills.Data.Models;
     using PoolDrills.Web.Services.Contracts;
     using PoolDrills.Web.ViewModels.Drills;
@@ -72,6 +73,11 @@
 
             drill.AuthorId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             drill.Author = await this.userManager.GetUserAsync(this.User);
+
+            if (!this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+            {
+                drill.IsApproved = false;
+            }
 
             this.drillsService.AddDrill(drill);
 

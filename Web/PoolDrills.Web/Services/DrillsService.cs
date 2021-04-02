@@ -5,6 +5,7 @@
     using System.Linq;
 
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
     using PoolDrills.Data;
     using PoolDrills.Data.Models;
     using PoolDrills.Data.Models.Enums;
@@ -13,14 +14,10 @@
     public class DrillsService : IDrillsService
     {
         private readonly ApplicationDbContext db;
-        private readonly UserManager<ApplicationUser> userManager;
 
-        public DrillsService(
-            ApplicationDbContext db,
-            UserManager<ApplicationUser> userManager)
+        public DrillsService(ApplicationDbContext db)
         {
             this.db = db;
-            this.userManager = userManager;
         }
 
         public void AddDrill(Drill drill)
@@ -87,7 +84,12 @@
 
         public IEnumerable<Drill> GetAllApprovedDrills()
         {
-            return this.db.Drills.Where(x => x.IsApproved == true).ToList();
+            return this.db.Drills.Include(x => x.Author).Where(x => x.IsApproved == true).ToList();
+        }
+
+        public IEnumerable<Drill> GetAllDisApprovedDrills()
+        {
+            return this.db.Drills.Include(x => x.Author).Where(x => x.IsApproved == false).ToList();
         }
 
         public IEnumerable<Drill> GetAllDrills()
@@ -114,9 +116,14 @@
             return products;
         }
 
+        public IEnumerable<Drill> GetAllHiddenDrills()
+        {
+            return this.db.Drills.Include(x => x.Author).Where(x => x.IsHidden == true).ToList();
+        }
+
         public IEnumerable<Drill> GetAllVisibleDrills()
         {
-            return this.db.Drills.Where(x => x.IsHidden == false).ToList();
+            return this.db.Drills.Include(x => x.Author).Where(x => x.IsHidden == false).ToList();
         }
 
         public Drill GetDrillById(int id)

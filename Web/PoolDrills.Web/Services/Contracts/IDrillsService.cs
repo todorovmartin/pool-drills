@@ -31,7 +31,11 @@
 
         IEnumerable<Drill> GetAllVisibleDrills();
 
+        IEnumerable<Drill> GetAllHiddenDrills();
+
         IEnumerable<Drill> GetAllApprovedDrills();
+
+        IEnumerable<Drill> GetAllDisApprovedDrills();
 
         IEnumerable<Drill> GetAllDrillsBySearch(string searchString);
     }
