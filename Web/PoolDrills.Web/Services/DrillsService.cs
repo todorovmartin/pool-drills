@@ -128,7 +128,7 @@
 
         public Drill GetDrillById(int id)
         {
-            var drill = this.db.Drills.FirstOrDefault(x => x.Id == id);
+            var drill = this.db.Drills.Include(x => x.Author).FirstOrDefault(x => x.Id == id);
 
             return drill;
         }

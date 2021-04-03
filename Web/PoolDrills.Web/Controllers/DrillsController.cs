@@ -83,5 +83,13 @@
 
             return this.RedirectToAction(nameof(this.All)); // todo redirect to confrimation page
         }
+
+        public IActionResult Details(int drillId)
+        {
+            var drill = this.drillsService.GetDrillById(drillId);
+
+            var vm = this.mapper.Map<DrillViewModel>(drill);
+            return this.View(vm);
+        }
     }
 }

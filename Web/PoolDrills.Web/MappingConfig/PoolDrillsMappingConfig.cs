@@ -12,6 +12,7 @@
             this.CreateMap<EditDrillViewModel, Drill>();
             this.CreateMap<Drill, EditDrillViewModel>();
             this.CreateMap<Drill, DrillViewModel>();
+            this.CreateMap<DrillViewModel, Drill>();
         }
     }
 }

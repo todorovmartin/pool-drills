@@ -17,7 +17,7 @@
                     <h5 class="card-title">@drill.Title</h5>
                     <p class="card-text">@drill.Description</p>
                     <p class="card-text">@drill.Category</p>
-                    <a href="#" class="btn btn-primary">Edit</a>
+                    <a asp-controller="Drills" asp-action="Details" asp-route-drillId="@drill.Id" class="btn btn-primary">Details</a>
                     <a href="#" class="btn btn-primary">View</a>
                 </div>
             </div>

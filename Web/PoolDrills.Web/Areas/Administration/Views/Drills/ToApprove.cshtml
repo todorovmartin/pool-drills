@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<PoolDrills.Data.Models.Drill>
 
 @{
-    this.ViewData["Title"] = "Home Page";
+    this.ViewData["Title"] = "Approve Drills";
 }
 
 <table class="table table-hover">
@@ -15,17 +15,17 @@
     </thead>
     <tbody>
         @{ 
-            int i = 1;
+            int rowNumber = 1;
         } 
-        @foreach (var item in Model)
+        @foreach (var drill in Model)
         {
             <tr>
-                <th scope="row">@i</th>
-                <td>@item.Author.NormalizedUserName</td>
-                <td>@item.Difficulty</td>
+                <th scope="row">@rowNumber</th>
+                <td><img src="@drill.ImageUrl"/></td>
+                <td>@drill.Author.NormalizedUserName</td>
                 <td>approve / delete</td>
             </tr>
-            i++;
+            rowNumber++;
         }
     </tbody>
 </table>
